@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Search, BookOpen, Sparkles, CheckCircle2 } from "lucide-react";
 import { MOMENTS, AGE_GROUPS, SAMPLE_PLAYLISTS, Moment, AgeGroup } from "@/lib/data";
 import PlaylistCard from "@/components/PlaylistCard";
@@ -159,47 +160,49 @@ export default function PlaylistsPage() {
                 <Sparkles size={15} className="text-amber-500" />
                 <span className="text-sm font-bold text-gray-700">Most Saved This Week</span>
               </div>
-              <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-r ${filtered[0].gradient} p-6 md:p-8 text-white cursor-pointer group`}>
-                <div className="absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute -bottom-16 -left-8 w-40 h-40 bg-white/10 rounded-full" />
-                <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <span className="text-7xl animate-float">{filtered[0].coverEmoji}</span>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="flex items-center gap-1 bg-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-                        <CheckCircle2 size={11} />
-                        Parent Verified
-                      </span>
-                      {filtered[0].ageGroups.slice(0, 3).map((age) => (
-                        <span key={age} className="bg-white/20 text-white text-xs px-2.5 py-1 rounded-full">
-                          {age}y
+              <Link href={`/playlists/${filtered[0].id}`} className="block group">
+                <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-r ${filtered[0].gradient} p-6 md:p-8 text-white`}>
+                  <div className="absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full group-hover:scale-110 transition-transform duration-500" />
+                  <div className="absolute -bottom-16 -left-8 w-40 h-40 bg-white/10 rounded-full" />
+                  <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <span className="text-7xl animate-float">{filtered[0].coverEmoji}</span>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span className="flex items-center gap-1 bg-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                          <CheckCircle2 size={11} />
+                          Parent Verified
                         </span>
-                      ))}
+                        {filtered[0].ageGroups.slice(0, 3).map((age) => (
+                          <span key={age} className="bg-white/20 text-white text-xs px-2.5 py-1 rounded-full">
+                            {age}y
+                          </span>
+                        ))}
+                      </div>
+                      <h2 className="font-black text-2xl sm:text-3xl leading-tight mb-2 group-hover:underline underline-offset-2">{filtered[0].title}</h2>
+                      <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-3 max-w-lg">
+                        {filtered[0].description}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
+                        <span className="font-semibold text-white">{filtered[0].itemCount} videos</span>
+                        <span>·</span>
+                        <span>{filtered[0].saves.toLocaleString()} saves</span>
+                        <span>·</span>
+                        <span>by {filtered[0].createdBy}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {filtered[0].tags.slice(0, 4).map((tag) => (
+                          <span key={tag} className="bg-white/20 text-white/90 text-xs px-2.5 py-1 rounded-full">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <h2 className="font-black text-2xl sm:text-3xl leading-tight mb-2">{filtered[0].title}</h2>
-                    <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-3 max-w-lg">
-                      {filtered[0].description}
-                    </p>
-                    <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
-                      <span className="font-semibold text-white">{filtered[0].itemCount} videos</span>
-                      <span>·</span>
-                      <span>{filtered[0].saves.toLocaleString()} saves</span>
-                      <span>·</span>
-                      <span>by {filtered[0].createdBy}</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {filtered[0].tags.slice(0, 4).map((tag) => (
-                        <span key={tag} className="bg-white/20 text-white/90 text-xs px-2.5 py-1 rounded-full">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
+                    <span className="flex-shrink-0 bg-white/20 group-hover:bg-white/30 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">
+                      Open Playlist →
+                    </span>
                   </div>
-                  <button className="flex-shrink-0 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">
-                    Open Playlist →
-                  </button>
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* Secondary featured row (2-wide) */}

@@ -26,6 +26,13 @@ export interface ContentItem {
   addedBy: string;
 }
 
+export interface AmazonLink {
+  title: string;
+  url: string;
+  price: string;
+  note: string;
+}
+
 export interface Playlist {
   id: string;
   title: string;
@@ -41,6 +48,7 @@ export interface Playlist {
   tags: string[];
   gradient: string;
   items?: ContentItem[];
+  amazonLinks?: AmazonLink[];
 }
 
 export const MOMENTS: { id: Moment; label: string; emoji: string; color: string; bg: string }[] = [
@@ -78,6 +86,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["calm", "sleep", "routine", "lullabies"],
     gradient: "from-indigo-500 to-purple-600",
+    amazonLinks: [
+      { title: "Hatch Rest+ Baby Sound Machine & Night Light", url: "https://www.amazon.com/s?k=hatch+rest+sound+machine", price: "$89", note: "Parents swear by this for bedtime" },
+      { title: "LectroFan White Noise Machine", url: "https://www.amazon.com/s?k=lectrofan+white+noise+machine", price: "$49", note: "Best for masking household sounds" },
+      { title: "The Sleep Lady's Good Night Sleep Tight (Book)", url: "https://www.amazon.com/s?k=sleep+lady+good+night+sleep+tight+book", price: "$16", note: "Recommended by our sleep-deprived community" },
+    ],
   },
   {
     id: "flight-safe-toddler",
@@ -93,6 +106,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["travel", "offline", "long-form", "distraction"],
     gradient: "from-sky-400 to-blue-600",
+    amazonLinks: [
+      { title: "Puro Sound Labs BT2200 Kids Headphones", url: "https://www.amazon.com/s?k=puro+sound+kids+headphones+volume+limiting", price: "$39", note: "Volume-limiting, survived 3 international trips" },
+      { title: "Airplane Tray Table Tablet Holder", url: "https://www.amazon.com/s?k=airplane+tray+tablet+holder+kids", price: "$18", note: "Hands-free on the tray table — game changer" },
+      { title: "Melissa & Doug Water Wow! Activity Pad", url: "https://www.amazon.com/s?k=melissa+doug+water+wow+activity+pad", price: "$9", note: "For when screens don't work anymore" },
+    ],
   },
   {
     id: "calm-down-videos",
@@ -108,6 +126,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["tantrum", "calm", "regulation", "breathing"],
     gradient: "from-emerald-400 to-teal-600",
+    amazonLinks: [
+      { title: "Munchkin Calm Spinner Fidget Toy", url: "https://www.amazon.com/s?k=toddler+calm+down+fidget+spinner+toy", price: "$12", note: "Something to do with their hands during meltdowns" },
+      { title: "Breathing Ball / Expandable Sphere", url: "https://www.amazon.com/s?k=breathing+ball+kids+calm+down+yoga", price: "$14", note: "Visual aid for 'big breath in, breath out'" },
+      { title: "The Whole-Brain Child (Book)", url: "https://www.amazon.com/s?k=the+whole+brain+child+book", price: "$15", note: "The science behind why these videos work" },
+    ],
   },
   {
     id: "sick-day-gentle",
@@ -123,6 +146,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["gentle", "quiet", "comforting", "low-stim"],
     gradient: "from-rose-400 to-pink-600",
+    amazonLinks: [
+      { title: "Frida Baby 3-in-1 Humidifier", url: "https://www.amazon.com/s?k=frida+baby+humidifier+sick+day", price: "$54", note: "Makes the sick day room actually comfortable" },
+      { title: "iProven Forehead & Ear Thermometer", url: "https://www.amazon.com/s?k=iproven+forehead+ear+thermometer+kids", price: "$35", note: "Quick read, no fighting with a cranky sick toddler" },
+      { title: "Kids Sherpa Hooded Blanket", url: "https://www.amazon.com/s?k=kids+sherpa+hooded+blanket+toddler+sick", price: "$22", note: "The ultimate comfort item on sick days" },
+    ],
   },
   {
     id: "restaurant-quick-wins",
@@ -138,6 +166,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["quick", "engaging", "calm", "public"],
     gradient: "from-amber-400 to-orange-500",
+    amazonLinks: [
+      { title: "Anker PowerCore Portable Charger 10000mAh", url: "https://www.amazon.com/s?k=anker+powercore+10000+portable+charger", price: "$25", note: "Because dead phone = real meltdown" },
+      { title: "BuddyPhones Explore+ Kids Headphones", url: "https://www.amazon.com/s?k=buddyphones+explore+kids+headphones", price: "$29", note: "Restaurant-friendly, volume-safe" },
+      { title: "Crayola Color Wonder Mini Coloring Kit", url: "https://www.amazon.com/s?k=crayola+color+wonder+mini+travel+kit", price: "$8", note: "Backup for when the phone dies anyway" },
+    ],
   },
   {
     id: "abc-123-adventures",
@@ -153,6 +186,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["educational", "letters", "numbers", "songs"],
     gradient: "from-blue-500 to-violet-600",
+    amazonLinks: [
+      { title: "LeapFrog Alphabet Learning Easel", url: "https://www.amazon.com/s?k=leapfrog+alphabet+learning+easel+toddler", price: "$48", note: "Pairs perfectly with the letter videos" },
+      { title: "Melissa & Doug See & Spell Wooden Toy", url: "https://www.amazon.com/s?k=melissa+doug+see+and+spell+wooden+toy", price: "$22", note: "Offline extension of what they watch" },
+      { title: "Numberblocks Official Sticker Activity Book", url: "https://www.amazon.com/s?k=numberblocks+sticker+activity+book", price: "$10", note: "Obsessed kids will NEED this" },
+    ],
   },
   {
     id: "dance-and-wiggle",
@@ -168,6 +206,11 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["energy", "dancing", "movement", "fun"],
     gradient: "from-pink-500 to-fuchsia-600",
+    amazonLinks: [
+      { title: "Toddler Dance Mat with Music & Lights", url: "https://www.amazon.com/s?k=toddler+dance+mat+music+lights", price: "$32", note: "Like a tiny nightclub in your living room" },
+      { title: "Interlocking Foam Play Mat Tiles", url: "https://www.amazon.com/s?k=foam+floor+play+mat+tiles+kids", price: "$35", note: "Soft landing for all that wiggling" },
+      { title: "Amazon Echo Dot Kids", url: "https://www.amazon.com/s?k=amazon+echo+dot+kids+edition", price: "$59", note: "Voice control for the playlist while they dance" },
+    ],
   },
   {
     id: "morning-start-up",
@@ -183,6 +226,10 @@ export const SAMPLE_PLAYLISTS: Playlist[] = [
     parentVerified: true,
     tags: ["morning", "cheerful", "routine", "positive"],
     gradient: "from-yellow-400 to-orange-400",
+    amazonLinks: [
+      { title: "Kids Morning Routine Responsibility Chart", url: "https://www.amazon.com/s?k=kids+morning+routine+responsibility+chart", price: "$13", note: "Pairs with the routine-building videos" },
+      { title: "Munchkin Click Lock Snack Catcher Cups (2pk)", url: "https://www.amazon.com/s?k=munchkin+click+lock+snack+catcher", price: "$11", note: "For the breakfast-while-watching situation" },
+    ],
   },
 ];
 
